@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi" data-bs-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Đăng nhập · StayFlow</title>
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/vendor/bootstrap-icons/bootstrap-icons.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="login" data-base="pages/">
+<main class="min-vh-100 d-flex align-items-center py-4" id="main" tabindex="-1">
+  <div class="container" style="max-width:480px">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+      <a class="sf-brand" href="index.html"><span class="sf-mark"><i class="bi bi-key" aria-hidden="true"></i></span>StayFlow</a>
+      <button class="btn btn-outline-secondary btn-sm" type="button" data-open="settingsModal" aria-label="Cài đặt giao diện"><i class="bi bi-sliders" aria-hidden="true"></i></button>
+    </div>
+    <div class="card sf-key">
+      <div class="sf-stripe" aria-hidden="true"></div>
+      <div class="card-body p-4">
+        <div class="alert alert-warning d-none py-2" role="alert" id="needLogin">Vui lòng đăng nhập để tiếp tục.</div>
+        <h1 class="h3 sf-h mb-1">Đăng nhập</h1>
+        <p class="text-body-secondary small mb-3">Nhập mã người dùng để vào hệ thống.</p>
+        <form id="loginForm" class="needs-validation" data-form="login" novalidate>
+          <div class="mb-3">
+            <label class="form-label fw-semibold" for="uid">Mã người dùng</label>
+            <input id="uid" name="uid" class="form-control form-control-lg" required pattern="[A-Za-z0-9_]{3,12}" maxlength="12" data-rule="loginId" autocomplete="username" autocapitalize="characters" placeholder="Ví dụ: KH01" data-msg-required="Hãy nhập mã người dùng." data-msg-pattern="Mã gồm 3–12 ký tự: chữ không dấu, số hoặc gạch dưới.">
+            <div class="invalid-feedback"></div>
+          </div>
+          <button class="btn btn-primary btn-lg w-100" type="submit">Đăng nhập</button>
+        </form>
+        <hr class="my-4">
+        <div class="small fw-semibold mb-2">Tài khoản mẫu</div>
+        <div id="demoAccounts"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="stTitle" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header"><h2 class="modal-title fs-5" id="stTitle">Cài đặt nguyên mẫu</h2><button type="button" class="btn-close" data-close aria-label="Đóng"></button></div>
+      <div class="modal-body">
+        <p class="text-body-secondary">Các tùy chọn giúp bạn thử các trạng thái lỗi khi demo.</p>
+        <div class="mb-3"><label class="form-label" for="theme">Giao diện</label>
+          <select id="theme" class="form-select" data-in="theme"><option value="auto">Theo thiết bị</option><option value="light">Sáng</option><option value="dark">Tối</option></select></div>
+        <div class="form-check form-switch mb-2"><input class="form-check-input" type="checkbox" role="switch" id="simError" data-in="simError"><label class="form-check-label" for="simError">Giả lập lỗi tải dữ liệu</label></div>
+        <div class="form-check form-switch"><input class="form-check-input" type="checkbox" role="switch" id="aiFail" data-in="aiFail"><label class="form-check-label" for="aiFail">Giả lập AI không phản hồi</label></div>
+      </div>
+      <div class="modal-footer"><button type="button" class="btn btn-outline-danger me-auto" data-act="reset-data">Đặt lại dữ liệu mẫu</button><button type="button" class="btn btn-primary" data-close>Xong</button></div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="cfTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header"><h2 class="modal-title fs-5" id="cfTitle"></h2><button type="button" class="btn-close" data-close aria-label="Đóng"></button></div>
+      <div class="modal-body">
+        <div id="cfBody"></div>
+      </div>
+      <div class="modal-footer"><button type="button" class="btn btn-link" data-close>Giữ nguyên</button><button type="button" class="btn btn-danger" id="cfOk" data-act="confirm-ok">Xác nhận</button></div>
+    </div>
+  </div>
+</div>
+<div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3" id="toasts" aria-live="polite"></div>
+
+<script src="js/modules/utils.js"></script>
+<script src="assets/data/seed.js"></script>
+<script src="js/api.js"></script>
+<script src="js/modules/validate.js"></script>
+<script src="js/modules/ui.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+/*
+ * StayFlow – lớp tùy biến chồng lên Bootstrap 5.3:
+ * màu thương hiệu (teal + đồng), phông chữ, và vài thành phần Bootstrap không có sẵn
+ * (các bước tiến độ, dòng thời gian, hộp AI, thẻ khóa ở trang đăng nhập).
+ * Điểm ngắt responsive nằm trong responsive.css.
+ */
+:root,
+[data-bs-theme="light"] {
+  --bs-primary: #0F4C57;
+  --bs-primary-rgb: 15, 76, 87;
+  --bs-link-color: #0F4C57;
+  --bs-link-color-rgb: 15, 76, 87;
+  --bs-link-hover-color: #0A3640;
+  --bs-link-hover-color-rgb: 10, 54, 64;
+  --bs-body-color: #0E2A30;
+  --bs-body-color-rgb: 14, 42, 48;
+  --bs-secondary-color: rgba(14, 42, 48, .72);
+  --bs-border-color: #D3DEDC;
+  --bs-tertiary-bg: #F4F8F7;
+  --bs-tertiary-bg-rgb: 244, 248, 247;
+  --sf-page-bg: #EDF2F1;
+  --sf-accent: #B7822B;
+  --sf-on-primary: #FFFFFF;
+  --bs-body-font-family: 'Be Vietnam Pro', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --bs-body-font-size: .95rem;
+}
+[data-bs-theme="dark"] {
+  --bs-primary: #58B8C4;
+  --bs-primary-rgb: 88, 184, 196;
+  --bs-link-color: #58B8C4;
+  --bs-link-color-rgb: 88, 184, 196;
+  --bs-link-hover-color: #8FD0D8;
+  --bs-link-hover-color-rgb: 143, 208, 216;
+  --bs-body-bg: #11272D;
+  --bs-body-bg-rgb: 17, 39, 45;
+  --bs-body-color: #E5EFED;
+  --bs-body-color-rgb: 229, 239, 237;
+  --bs-secondary-color: rgba(229, 239, 237, .7);
+  --bs-border-color: #223F46;
+  --bs-tertiary-bg: #0E2126;
+  --bs-tertiary-bg-rgb: 14, 33, 38;
+  --sf-page-bg: #0A1A1E;
+  --sf-accent: #DDA94B;
+  --sf-on-primary: #04222A;
+}
+
+body { background: var(--sf-page-bg); }
+h1, h2, h3, .h1, .h2, .h3, .sf-h { font-family: 'Bricolage Grotesque', 'Be Vietnam Pro', system-ui, sans-serif; letter-spacing: -.01em; }
+h1, .h1, h2.sf-h, .sf-h { font-weight: 800; }
+:focus-visible { outline: 3px solid var(--sf-accent); outline-offset: 2px; }
+
+/* ---------- Ghi đè màu chủ đạo của Bootstrap (các biến nút được biên dịch sẵn) ---------- */
+.btn-primary {
+  --bs-btn-color: var(--sf-on-primary); --bs-btn-bg: var(--bs-primary); --bs-btn-border-color: var(--bs-primary);
+  --bs-btn-hover-color: var(--sf-on-primary); --bs-btn-hover-bg: color-mix(in srgb, var(--bs-primary) 85%, #000); --bs-btn-hover-border-color: color-mix(in srgb, var(--bs-primary) 85%, #000);
+  --bs-btn-active-color: var(--sf-on-primary); --bs-btn-active-bg: color-mix(in srgb, var(--bs-primary) 75%, #000); --bs-btn-active-border-color: color-mix(in srgb, var(--bs-primary) 75%, #000);
+  --bs-btn-disabled-color: var(--sf-on-primary); --bs-btn-disabled-bg: var(--bs-primary); --bs-btn-disabled-border-color: var(--bs-primary);
+  --bs-btn-focus-shadow-rgb: var(--bs-primary-rgb);
+}
+.btn-outline-primary {
+  --bs-btn-color: var(--bs-primary); --bs-btn-border-color: var(--bs-primary);
+  --bs-btn-hover-color: var(--sf-on-primary); --bs-btn-hover-bg: var(--bs-primary); --bs-btn-hover-border-color: var(--bs-primary);
+  --bs-btn-active-color: var(--sf-on-primary); --bs-btn-active-bg: var(--bs-primary); --bs-btn-active-border-color: var(--bs-primary);
+  --bs-btn-disabled-color: var(--bs-primary); --bs-btn-disabled-border-color: var(--bs-primary);
+  --bs-btn-focus-shadow-rgb: var(--bs-primary-rgb);
+}
+.btn-outline-warning { --bs-btn-color: var(--sf-accent); --bs-btn-border-color: var(--sf-accent); --bs-btn-hover-bg: var(--sf-accent); --bs-btn-hover-border-color: var(--sf-accent); --bs-btn-hover-color: #1A1405; --bs-btn-active-bg: var(--sf-accent); --bs-btn-active-border-color: var(--sf-accent); --bs-btn-active-color: #1A1405; }
+.text-bg-primary { color: var(--sf-on-primary) !important; background-color: RGBA(var(--bs-primary-rgb), var(--bs-bg-opacity, 1)) !important; }
+.nav-pills { --bs-nav-pills-link-active-bg: var(--bs-primary); --bs-nav-pills-link-active-color: var(--sf-on-primary); }
+.progress { --bs-progress-bar-bg: var(--bs-primary); }
+.form-control:focus, .form-select:focus { border-color: var(--bs-primary); box-shadow: 0 0 0 .25rem rgba(var(--bs-primary-rgb), .25); }
+.form-check-input:checked { background-color: var(--bs-primary); border-color: var(--bs-primary); }
+.form-check-input:focus { border-color: var(--bs-primary); box-shadow: 0 0 0 .25rem rgba(var(--bs-primary-rgb), .25); }
+.form-range::-webkit-slider-thumb { background-color: var(--bs-primary); }
+.form-range::-moz-range-thumb { background-color: var(--bs-primary); }
+.list-group-item-action:hover { background: var(--bs-tertiary-bg); }
+
+/* ---------- Khung trang ---------- */
+.sf-brand { display: flex; align-items: center; gap: .6rem; font: 800 1.25rem 'Bricolage Grotesque', sans-serif; letter-spacing: -.02em; color: var(--bs-body-color); text-decoration: none; }
+.sf-mark { width: 30px; height: 30px; border-radius: 8px; background: var(--bs-primary); color: var(--sf-on-primary); display: grid; place-items: center; font-size: 1rem; }
+.sf-side { top: 58px; }
+.sf-side .nav-link { color: var(--bs-secondary-color); font-weight: 500; }
+.sf-side .nav-link:hover { color: var(--bs-body-color); background: rgba(var(--bs-primary-rgb), .08); }
+.sf-side .nav-link.active { color: var(--sf-on-primary); }
+.sf-role-tag { font: 700 .8rem 'Bricolage Grotesque', sans-serif; color: var(--bs-secondary-color); padding: 0 .75rem .5rem; }
+
+/* ---------- Tiến độ yêu cầu ---------- */
+.sf-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; list-style: none; padding: 0; margin: 0; }
+.sf-steps li { font-size: .75rem; color: var(--bs-secondary-color); padding-top: 8px; border-top: 4px solid var(--bs-border-color); border-radius: 2px; }
+.sf-steps li.done { border-color: var(--bs-success); color: var(--bs-body-color); }
+.sf-steps li.now { border-color: var(--bs-primary); color: var(--bs-body-color); font-weight: 600; }
+
+/* ---------- Dòng thời gian nhật ký ---------- */
+.sf-tl { list-style: none; margin: 0; padding: 0 0 0 14px; border-left: 2px solid var(--bs-border-color); }
+.sf-tl li { position: relative; padding: 0 0 14px 14px; }
+.sf-tl li::before { content: ""; position: absolute; left: -22px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--bs-body-bg); border: 2px solid var(--bs-primary); }
+.sf-tl li.note::before { background: var(--sf-accent); border-color: var(--sf-accent); }
+.sf-tl time { font-size: .75rem; color: var(--bs-secondary-color); }
+
+/* ---------- Hộp AI ---------- */
+.sf-ai { border: 1px dashed color-mix(in srgb, var(--sf-accent) 70%, var(--bs-border-color)) !important; background: color-mix(in srgb, var(--sf-accent) 6%, var(--bs-body-bg)); }
+
+/* ---------- Trang đăng nhập ---------- */
+.sf-key { border: 0; border-radius: 16px; overflow: hidden; box-shadow: 0 12px 40px rgba(14, 42, 48, .18); }
+.sf-key .sf-stripe { height: 40px; background: #1F2F33; }
+.sf-key .sf-chip { width: 38px; height: 28px; border-radius: 5px; background: linear-gradient(135deg, #E8C777, #B7822B); }
+@media (prefers-reduced-motion: no-preference) {
+  .sf-key { animation: sf-deal .6s cubic-bezier(.2, .8, .2, 1) backwards; }
+  @keyframes sf-deal { from { transform: translateX(60px) rotate(3deg); opacity: 0; } }
+}
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition-duration: .01ms !important; } }
+
+/* ---------- Thành phần do JS thuần điều khiển (Bootstrap chỉ định vị bằng Popper nên tự định vị ở đây) ---------- */
+.dropdown-menu { top: 100%; left: 0; margin-top: .25rem; }
+.dropdown-menu-end { right: 0; left: auto; }
+.nav-link .badge { font-size: .65rem; }
+.toast-container { z-index: 1090; }
+
+/* ---------- Kiểm tra hợp lệ: nhóm nút radio dạng thẻ (btn-check) báo lỗi bằng viền đỏ ---------- */
+.btn-check.is-invalid + .btn { --bs-btn-border-color: var(--bs-danger); --bs-btn-color: var(--bs-danger); }
+fieldset .invalid-feedback { margin-top: .5rem; }

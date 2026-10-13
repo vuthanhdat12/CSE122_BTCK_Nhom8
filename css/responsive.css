@@ -1,0 +1,20 @@
+/*
+ * StayFlow – responsive bổ sung cho lưới của Bootstrap (điểm ngắt: lg < 992px, sm < 576px).
+ */
+@media (max-width: 991.98px) {
+  main { padding-bottom: 5rem; }
+  .sf-steps li { font-size: .7rem; }
+}
+
+/* Bảng xếp chồng thành thẻ trên điện thoại (dùng với class .table-stack và data-label ở mỗi ô) */
+@media (max-width: 575.98px) {
+  .table-stack thead { display: none; }
+  .table-stack, .table-stack tbody, .table-stack tr, .table-stack td { display: block; width: 100%; }
+  .table-stack tr { padding: .6rem .9rem; border-bottom: 1px solid var(--bs-border-color); }
+  .table-stack tr:last-child { border-bottom: 0; }
+  .table-stack td { border: 0; padding: .2rem 0; display: flex; justify-content: space-between; align-items: center; gap: .75rem; }
+  .table-stack td::before { content: attr(data-label); color: var(--bs-secondary-color); font-size: .8rem; flex: none; }
+  .table-stack td.text-end { justify-content: flex-end; flex-wrap: wrap; }
+  .table-stack td.text-end::before { display: none; }
+  .table-stack .progress { flex: 1; max-width: 140px; }
+}
